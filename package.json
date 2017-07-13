@@ -1,5 +1,5 @@
 {
-    "name": "jsLint2-for-Brackets",
+    "name": "jslint2",
     "title": "jsLint2 for Adobe Brackets",
     "description": "Add support last version jsLint for Adobe Brackets, this version support ES6 and many more good parts. ps: for disable default JSLint go to 'Extansion manager' -> 'Default' tab and press 'Disable' button in 'JSLint' line",
     "homepage": "https://github.com/FreezeLogic/jsLint2-for-Brackets",
