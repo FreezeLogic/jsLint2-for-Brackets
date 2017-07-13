@@ -1,9 +1,11 @@
 {
-    "name": "yourname.your-extension-id",
+    "name": "jsLint2-for-Brackets",
     "title": "jsLint2 for Adobe Brackets",
     "description": "Add support last version jsLint for Adobe Brackets, this version support ES6 and many more good parts.",
     "homepage": "https://github.com/FreezeLogic/jsLint2-for-Brackets",
-    "version": "0.1.1",
+    "version": "0.1.2",
+    "keywords": ["lint", "linting", "linter"],
+    "categories": "linting",
     "author": "Nikolay Vostokov <nikolay@vostokov.pro> (http://vostokov.pro)",
     "license": "MIT",
     "engines": {

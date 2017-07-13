@@ -1,3 +1,6 @@
+/*jslint
+    maxerr: 10, es6, node, single, for, bitwise, for, multivar
+*/
 /*
  * Copyright (c) 2012 - present Adobe Systems Incorporated. All rights reserved.
  *
@@ -18,20 +21,18 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
-
  */
-
-/*global JSLINT */
-
-/**
- * Provides JSLint results via the core linting extension point
- */
+/*
+global JSLINT
+*/
+/*
+* Provides JSLint results via the core linting extension point
+*/
 define(function (require, exports, module) {
     "use strict";
 
     // Load JSLint, a non-module lib
-    require("jslint");
+    require("thirdparty/jslint/jslint");
 
     // Load dependent modules
     var CodeInspection     = brackets.getModule("language/CodeInspection"),
@@ -242,8 +243,7 @@ define(function (require, exports, module) {
         if (!hasEnvironment) {
             options.browser = true;
         }
-        var global_array = [];
-        var jslintResult = jslint(text, options, global_array);
+        var jslintResult = jslint(text, options);
         // Remove any trailing null placeholder (early-abort indicator)
         var errors = jslintResult.warnings.filter(function (err) { return err !== null; });
         errors = errors.map(function (jslintError) {
