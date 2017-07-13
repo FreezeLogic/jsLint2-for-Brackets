@@ -1,7 +1,7 @@
 {
-    "name": "jslint2",
+    "name": "jsLint2-for-Brackets",
     "title": "jsLint2 for Adobe Brackets",
-    "description": "Add support last version jsLint for Adobe Brackets, this version support ES6 and many more good parts.",
+    "description": "Add support last version jsLint for Adobe Brackets, this version support ES6 and many more good parts. ps: for disable default JSLint go to 'Extansion manager' -> 'Default' tab and press 'Disable' button in 'JSLint' line",
     "homepage": "https://github.com/FreezeLogic/jsLint2-for-Brackets",
     "version": "0.1.2",
     "keywords": ["lint", "linting", "linter"],
@@ -14,7 +14,7 @@
     "i18n": [ "en", "ru"],
     "package-i18n": {
         "ru": {
-            "description": "Добавляет поддержку jsLint новых версий в Adobe Brackets, в новой версии поддерживается ES6 и многие другие нововведения в JavaSript."
+            "description": "Добавляет поддержку jsLint новых версий в Adobe Brackets, в новой версии поддерживается ES6 и многие другие нововведения в JavaSript. ps: Для отключения встроенного JSLint надо перейти в 'Extansion manager' и на вкладке 'Default' найти строку 'JSLint и затем выбрать 'Disable' "
         }
     }
 }

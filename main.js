@@ -30,24 +30,15 @@ global JSLINT
 */
 define(function (require, exports, module) {
     "use strict";
-
-    // Load JSLint, a non-module lib
     require("thirdparty/jslint/jslint");
-
-    // Load dependent modules
     var CodeInspection     = brackets.getModule("language/CodeInspection"),
         Editor             = brackets.getModule("editor/Editor").Editor,
         PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
         Strings            = brackets.getModule("strings"),
         _                  = brackets.getModule("thirdparty/lodash");
 
-    var prefs = PreferencesManager.getExtensionPrefs("jslint");
+    var prefs = PreferencesManager.getExtensionPrefs("jslint2");
 
-    /**
-     * @private
-     * Used to keep track of the last options JSLint was run with to avoid running
-     * again when there were no changes.
-     */
     var _lastRunOptions;
 
     prefs.definePreference("options", "object", undefined, {
@@ -203,69 +194,47 @@ define(function (require, exports, module) {
             CodeInspection.requestRun(Strings.JSLINT_NAME);
         }
     });
-
-    // Predefined environments understood by JSLint.
     var ENVIRONMENTS = ["browser", "node", "couch", "rhino"];
-
-    // gets indentation size depending whether the tabs or spaces are used
     function _getIndentSize(fullPath) {
         return Editor.getUseTabChar(fullPath) ? Editor.getTabSize(fullPath) : Editor.getSpaceUnits(fullPath);
     }
-
-    /**
-     * Run JSLint on the current document. Reports results to the main UI. Displays
-     * a gold star when no errors are found.
-     */
     function lintOneFile(text, fullPath) {
-        // If a line contains only whitespace (here spaces or tabs), remove the whitespace
         text = text.replace(/^[ \t]+$/gm, "");
-
         var options = prefs.get("options");
-
         _lastRunOptions = _.clone(options);
-
         if (!options) {
             options = {};
         } else {
             options = _.clone(options);
         }
-
         if (!options.indent) {
-            // default to using the same indentation value that the editor is using
             options.indent = _getIndentSize(fullPath);
         }
-
-        // If the user has not defined the environment, we use browser by default.
         var hasEnvironment = _.some(ENVIRONMENTS, function (env) {
             return options[env] !== undefined;
         });
-
         if (!hasEnvironment) {
             options.browser = true;
         }
         var jslintResult = jslint(text, options);
-        // Remove any trailing null placeholder (early-abort indicator)
         var errors = jslintResult.warnings.filter(function (err) { return err !== null; });
         errors = errors.map(function (jslintError) {
             return {
-                // JSLint returns 1-based line/col numbers
                 pos: { line: jslintError.line, ch: jslintError.column},
                 message: jslintError.message,
                 type: CodeInspection.Type.WARNING
             };
         });
         var result = { 'errors': errors };
-        // If array terminated in a null it means there was a stop notice
         if (errors.length !== jslintResult.warnings.length) {
             result.aborted = true;
             errors[errors.length - 1].type = CodeInspection.Type.META;
         }
         return result;
     }
-
     // Register for JS files
     CodeInspection.register("javascript", {
-        name: Strings.JSLINT_NAME,
+        name: "JSLint2",
         scanFile: lintOneFile
     });
 });
