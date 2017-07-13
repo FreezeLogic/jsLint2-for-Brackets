@@ -4,9 +4,7 @@ Support last version JSLint for Adobe Brackets, this version support ES6 and man
 If need enable or disable JSLint options use this format in your *.js 
 
 /*
-
 jslint maxerr: 10, es6, node, single, for, bitwise, for, multivar
-
 */
 
 Full options list available on the web site http://www.jslint.com
