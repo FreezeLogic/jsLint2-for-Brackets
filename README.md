@@ -1,4 +1,4 @@
-# jsLint2-for-Brackets
+# jsLint2-for-Brackets (EOL)
 Support last version JSLint for Adobe Brackets, this version support ES6 and many more good parts.
 
 If need enable or disable JSLint options use this format in your *.js 
